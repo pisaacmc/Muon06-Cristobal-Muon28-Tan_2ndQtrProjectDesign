@@ -35,6 +35,9 @@ public class Player {
     public void setGold(int newValue){
         gold+=newValue;
     }
+    public Ship getShip(){
+        return ship;
+    }
     public void setInfluence(int newValue){
         influence+=newValue;
     }

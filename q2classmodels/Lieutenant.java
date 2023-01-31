@@ -13,25 +13,47 @@ import q2classmodels.Exceptions.BrokeException;
  * @author MUON
  */
 public class Lieutenant extends NPC implements Upgradable{
-    private boolean cleanse, retribution;
+    private boolean cleanse;
     private Player captain;
-    private int[] actionStats ={0,0,0,0,0,0}; //damage, healing, poison, weakness, gold
-    private int upgradeCost,tier;
-    public Lieutenant(String name, String dialogue, int gold){
+    private Ship ship;
+    private int[] actionStats ={0,0,0,0}; //damage, healing, poison, weakness
+    private int upgradeCost,tier,staminaCost;
+    public Lieutenant(String name, String dialogue, int gold,int damage, int healing, int poison, int weakness, boolean cleanse, int staminaCost){
         super(name, dialogue, 10);
+        actionStats[0] = damage;
+        actionStats[1] = healing;
+        actionStats[2] = poison;
+        actionStats[3] = weakness;
         
+    }
+    public void setCaptain(Player captain){
+        this.captain = captain;
+        this.ship = captain.getShip();
     }
     public void upgrade() throws BrokeException, AlreadyMaximumException{
         if (captain.getGold()-(upgradeCost*(1+(captain.getInfluence()+tier/10)))<0){
             throw new BrokeException("you dont have enough money for that!");            
         }
         if (tier ==3){
-            throw new AlreadyMaximumException("This weapon is already maxxed out!");
+            throw new AlreadyMaximumException("This lieutenant is already maxxed out!");
         }
         captain.setGold(captain.getGold()-(upgradeCost*(captain.getInfluence()+tier/10)));
+        for(int i=0; i<actionStats.length;i++){
+            if(actionStats[i]>0){
+                actionStats[i]++;
+            }
+        }
         tier+=1;
     }
-    public void specialMove(){
-        
+    public void specialMove(Enemy enemy){
+        this.ship = captain.getShip();
+        enemy.setHp(enemy.getHp()-actionStats[0]);
+        enemy.setPoison(enemy.getPoison()-actionStats[2]);
+        enemy.setWeakness(enemy.getWeakness()-actionStats[3]);
+        ship.setHp(ship.getHp()+actionStats[1]);
+        if(ship.getHp() == ship.getMaxHp()){
+            ship.setHp(ship.getMaxHp());
+        }
     }
+    
 }

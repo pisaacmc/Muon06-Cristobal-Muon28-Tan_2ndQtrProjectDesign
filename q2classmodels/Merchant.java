@@ -30,4 +30,13 @@ public class Merchant extends NPC{
         player.addItem(item);
         player.setGold(player.getGold()+item.getWorth());        
     }
+    public void addItem(Item item){
+        inventory.add(item);
+    }
+    public void removeItem(Item item){
+        inventory.remove(item);
+    }
+    public ArrayList<Item> getInventory(){
+        return inventory;
+    }
 }

@@ -66,9 +66,25 @@ public class Ship {
     public ArrayList<Weapon> getWeaponsList(){
         return weaponsList;
     }
+    public Lieutenant getLieutenant(){
+        return activeLieutenant;
+    }
+    public int getStrength(){
+        return strength;
+    }
+    public int getPoison(){
+        return poison;
+    }
+    public int getWeakness(){
+        return weakness;
+    }
+
     //setters
     public void setMaxHp(int newValue){
         maxHp = newValue;
+    }
+    public void setLieutenant(Lieutenant lieutenant){
+        activeLieutenant = lieutenant;
     }
     public void setHp(int newValue){
         hp = newValue;
@@ -87,6 +103,15 @@ public class Ship {
     }
     public void setFlatDamage(int newValue){
         flatDamage = newValue;
+    }
+    public void setStrength(int newValue){
+        strength = newValue;
+    }
+    public void setPoison(int newValue){
+        poison = newValue;
+    }
+    public void setWeakness(int newValue){
+        weakness = newValue;
     }
     public void shipInfo(){
         System.out.printf("Name: %s%nHp: %d/%d%nHull%d%nHealing: %d%n Flat Damage: %d%nPosion: %d%n Weakness: %d%n: Strength: %d%n", name,hp,maxHp,hull,healing,flatDamage,poison,weakness,strength);
@@ -213,7 +238,7 @@ public class Ship {
             throw new ItemNotFoundException("Item does not exist!");
         }
     }
-    public void removeWeaponForReplacement(){
+    public void ReplaceWeapon(){
         
     }
     public void addRelic(){

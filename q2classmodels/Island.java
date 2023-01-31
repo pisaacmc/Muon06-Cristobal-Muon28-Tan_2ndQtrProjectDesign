@@ -36,7 +36,7 @@ public class Island extends Location implements Interactable{
             sc = null;
             System.gc();
             if (choice.equalsIgnoreCase("merchant")){
-                
+                System.out.println("the merchant is unavailable");
                 continue;
             }
             else if (choice.equalsIgnoreCase("hire")){
