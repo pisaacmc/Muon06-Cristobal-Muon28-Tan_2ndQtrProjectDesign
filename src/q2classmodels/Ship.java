@@ -12,19 +12,20 @@ import java.util.*;
  */
 public class Ship {
     private String name;
+    private int influence, gold;
+    private ArrayList<Item> inventory = new ArrayList<Item>();
     private int hp, hull, healing, flatDamage, stamina, maxHp, maxStamina,
                 maxWeapon, strength, poison, weakness;
     private Lieutenant activeLieutenant;
     private Relic[] activeRelics = {null, null};
-    private Player player;
     private ArrayList<Weapon> weaponsList = new ArrayList();
     
-    public Ship(Player captain, String name, int maxHp, int hull){
-        player = captain;
+    public Ship(String name, int maxHp, int hull, int gold){
         this.name = name;
         this.maxHp = maxHp;
         this.hull = hull;
         this.healing = (int)Math.floor(maxHp*0.5);
+        this.gold = gold;
         this.stamina = 3;
         this.maxWeapon = 2;
         this.hp = maxHp;
@@ -32,7 +33,7 @@ public class Ship {
         this.strength = 0;
         this.poison = 0;
         this.weakness = 0;
-        weaponsList.add(new Weapon("cannon",5,10,1,captain,5,3));
+        weaponsList.add(new Weapon("cannon",5,10,1,this,5,3));
     }
     //getters
     
@@ -63,6 +64,12 @@ public class Ship {
     public int getFlatDamage(){
         return flatDamage;
     }
+    public int getGold(){
+        return gold;
+    }
+    public int getInfluence(){
+        return influence;
+    }
     public ArrayList<Weapon> getWeaponsList(){
         return weaponsList;
     }
@@ -78,6 +85,9 @@ public class Ship {
     public int getWeakness(){
         return weakness;
     }
+    public ArrayList<Item> getInventory(){
+        return inventory;
+    }
 
     //setters
     public void setMaxHp(int newValue){
@@ -88,6 +98,12 @@ public class Ship {
     }
     public void setHp(int newValue){
         hp = newValue;
+    }
+    public void setGold(int newValue){
+        gold+=newValue;
+    }
+    public void setInfluence(int newValue){
+        influence+=newValue;
     }
     public void setHull(int newValue){
         hull = newValue;
@@ -112,6 +128,12 @@ public class Ship {
     }
     public void setWeakness(int newValue){
         weakness = newValue;
+    }
+    public void addItem(Item item){
+        inventory.add(item);
+    }
+    public void removeItem(Item item){
+        inventory.remove(item);
     }
     public void shipInfo(){
         System.out.printf("Name: %s%nHp: %d/%d%nHull%d%nHealing: %d%n Flat Damage: %d%nPosion: %d%n Weakness: %d%n: Strength: %d%n", name,hp,maxHp,hull,healing,flatDamage,poison,weakness,strength);
@@ -232,7 +254,7 @@ public class Ship {
         if(weaponsList.size()==maxWeapon){
             throw new AlreadyMaximumException("Not enough space for that!");
         }
-        if(player.getInventory().contains(weapon)){
+        if(inventory.contains(weapon)){
             weaponsList.add(weapon);
         }
         else{

@@ -12,8 +12,8 @@ package q2classmodels;
 abstract class Item {
     protected String name,type;
     protected int worth, price, upgradeCost, staminaCost, tier;
-    protected Player owner;
-    protected Item (String name, String type, int price, int worth, Player owner){
+    protected Ship owner;
+    protected Item (String name, String type, int price, int worth, Ship owner){
         this.name = name;
         this.type = type;
         this.tier = 0;

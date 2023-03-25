@@ -12,20 +12,20 @@ import q2classmodels.Exceptions.*;
  */
 public class Merchant extends NPC{
     private ArrayList<Item> inventory = new ArrayList();
-    public Merchant (String name, String dialogue, int gold, Player player){
+    public Merchant (String name, String dialogue, int gold, Ship player){
         super(name, dialogue, gold);
         for (int i = 0; i<=player.getInfluence();i++){
             inventory.add(new Relic("PLACEHOLDER_RELIC",0,0,player));
             inventory.add(new Weapon("PLACEHOLDER_WEAPON",0,0,player,1));
         }
     }
-    public void buyItem(Item item, Player player){
+    public void buyItem(Item item, Ship player){
         inventory.add(item);
         player.removeItem(item);
         player.setGold(player.getGold()+item.getWorth());
         
     }
-    public void sellItem(Item item, Player player){
+    public void sellItem(Item item, Ship player){
         inventory.remove(item);
         player.addItem(item);
         player.setGold(player.getGold()+item.getWorth());        

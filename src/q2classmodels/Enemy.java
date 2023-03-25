@@ -15,7 +15,7 @@ public class Enemy extends NPC{
     private int[] debuffs = {0,0}; //poison, weakness
     private String weakAgainst, strongAgainst, damageType;
     private Item loot;
-    public Enemy(Player player){
+    public Enemy(Ship player){
         super("Pirate","DIE DIE DIE!",(int)Math.floor((Math.random()*(3+1))+1)*(1+player.getInfluence()/5));
         int difficultyModifier = player.getInfluence();
         this.hp = (int)Math.floor(((Math.random()*((10-5)+1)+5))*(1+difficultyModifier/5));
@@ -67,7 +67,7 @@ public class Enemy extends NPC{
         System.out.println(name+" attacked "+ship.getName()+" for "+damageDealt+"damage!");
         
     }
-    public void dropLoot(Player target){
+    public void dropLoot(Ship target){
         target.addItem(loot);
         target.setInfluence(target.getInfluence()+1);
     }

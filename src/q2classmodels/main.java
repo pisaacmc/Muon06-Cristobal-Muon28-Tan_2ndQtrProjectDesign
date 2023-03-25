@@ -18,11 +18,10 @@ public class main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Screens/MerchantScreen.fxml"));
         //switch what code is commented to see the 2 screens
-        //Parent root = FXMLLoader.load(getClass().getResource("Screens/StartMenu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Screens/StartMenu.fxml"));
         Scene scene = new Scene(root);
-        
+        Ship ship = new Ship("alcor",9,9,9);
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

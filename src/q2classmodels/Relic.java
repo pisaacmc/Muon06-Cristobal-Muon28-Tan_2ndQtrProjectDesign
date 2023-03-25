@@ -15,7 +15,7 @@ public class Relic extends Item implements Upgradable{
     private int[] buffs = {0,0,0,0};//poison, healing, power, weakness
     private boolean activated = false;
     private int staminaCost;
-    public Relic (String name, int price, int worth, Player player){
+    public Relic (String name, int price, int worth, Ship player){
         super(name, "weapon", price, worth, player);
         int buffPoints = player.getInfluence()+2;
         staminaCost = (int)Math.floor(Math.random()*(3)+1);

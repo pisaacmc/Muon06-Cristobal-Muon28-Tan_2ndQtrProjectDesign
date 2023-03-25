@@ -10,5 +10,5 @@ package q2classmodels;
  * @author MUON
  */
 public interface Interactable {
-    void interact(Player player);
+    void interact(Ship ship);
 }

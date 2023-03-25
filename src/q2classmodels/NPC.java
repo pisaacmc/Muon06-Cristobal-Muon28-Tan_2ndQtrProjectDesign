@@ -17,7 +17,7 @@ abstract class NPC implements Interactable{
         this.dialogue = dialogue;
         this.gold = gold;
     }
-    public void interact(Player player){
+    public void interact(Ship ship){
         System.out.print(dialogue);
     }
     
