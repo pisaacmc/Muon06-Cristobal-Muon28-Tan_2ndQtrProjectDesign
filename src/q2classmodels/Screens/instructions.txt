@@ -1,0 +1,3 @@
+Ok so This is more of a placeholder than anything, since we havent coded in the main gameplay loop yet.
+,
+Whoops! Here's another placeholder, meant to show the ability to turn pages and parse cool text files!
