@@ -5,7 +5,10 @@
 package q2classmodels.Screens;
 
 import java.io.IOException;
+import q2classmodels.*;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import static javafx.application.Platform.exit;
 import javafx.event.ActionEvent;
@@ -35,23 +38,44 @@ public class StartMenuController implements Initializable {
         Node source = (Node)e.getSource();
         Scene scene=source.getScene();
         Stage stage = (Stage) scene.getWindow();
+        FXMLLoader loader;
         Parent root;
         switch (source.getId()){
             case "startButton":
-                root = FXMLLoader.load(getClass().getResource("MerchantScreen.fxml"));
+                loader = new FXMLLoader(getClass().getResource("MerchantScreen.fxml"));
+                root = loader.load();
+                MerchantScreenController controller = loader.getController(); 
+                TextInputDialog dialog = new TextInputDialog("Player 1");
+                dialog.setTitle("Ready Player One");
+                dialog.setHeaderText("Input Your Name:");                
+                Optional<String> result = dialog.showAndWait();
+                String name;
+                name = result.orElse("Player 1");
+                Ship player = new Ship(name,10,2,999);
+                System.out.println("GOOOLD "+player.getGold());
+                controller.setPlayer(player);
+                controller.createMerchant();
+                controller.updateStats();
+                
                 break;
             case "helpButton":
-                root = FXMLLoader.load(getClass().getResource("HelpScreen.fxml"));
+                loader = new FXMLLoader(getClass().getResource("HelpScreen_1.fxml"));
+                root = loader.load();
+                
                 break;
             case "aboutButton":
-                root = FXMLLoader.load(getClass().getResource("AboutScreen.fxml"));
+                loader = new FXMLLoader(getClass().getResource("AboutScreen.fxml"));
+                root = loader.load();
+                
                 break;
             default:
-                root = FXMLLoader.load(getClass().getResource("MerchantScreen.fxml"));
+                loader = new FXMLLoader(getClass().getResource("MerchantScreen.fxml"));
+                root = loader.load();
                 System.exit(0); 
                 break;
         }
-        stage.hide();
+        
+        stage.hide();            
         stage.setScene(new Scene(root));
         stage.show();
         
