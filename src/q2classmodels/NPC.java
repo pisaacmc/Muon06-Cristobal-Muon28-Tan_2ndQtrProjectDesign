@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package q2classmodels;
-
+//NOTE: NOT CURRENTLY BEING USED
 /**
  *
  * @author MUON
