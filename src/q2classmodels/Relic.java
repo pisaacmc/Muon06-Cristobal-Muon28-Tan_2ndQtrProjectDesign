@@ -25,13 +25,11 @@ public class Relic extends Item implements Upgradable{
             buffPoints--;
             System.out.println(buffPoints);
         }
-        System.out.println("poison "+buffs[0]);
-        System.out.println("leech "+buffs[1]);
-        System.out.println("power "+buffs[2]);
-        System.out.println("weakness "+buffs[3]);
         
         staminaCost = 1;
     }
+    
+    
 
     public int[] getBuffs(){
         return buffs;

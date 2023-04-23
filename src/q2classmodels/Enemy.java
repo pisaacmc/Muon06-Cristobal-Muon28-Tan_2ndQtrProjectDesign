@@ -9,14 +9,15 @@ package q2classmodels;
  *
  * @author MUON
  */
-public class Enemy extends NPC{
+public class Enemy{
     private int hp, healing, atk, challenge;
+    private int gold;
     private int poison, weakness;
     private int[] debuffs = {0,0}; //poison, weakness
-    private String weakAgainst, strongAgainst, damageType;
+    private String name, weakAgainst, strongAgainst, damageType;
     private Item loot;
     public Enemy(Ship player){
-        super("Pirate","DIE DIE DIE!",(int)Math.floor((Math.random()*(3+1))+1)*(1+player.getInfluence()/5));
+        name = "bonzo";
         int difficultyModifier = player.getInfluence();
         this.hp = (int)Math.floor(((Math.random()*((10-5)+1)+5))*(1+difficultyModifier/5));
         healing = (int)Math.floor((Math.random()*2+2)*(1+difficultyModifier/5));
@@ -61,7 +62,7 @@ public class Enemy extends NPC{
         return weakAgainst;
     }
     public void interact(Ship ship){
-        System.out.print(name+": "+dialogue);
+        System.out.print(name);
         int damageDealt = (int)Math.round(atk*(1-(ship.getHull()/10)));
         ship.setHp(ship.getHp()-damageDealt);
         System.out.println(name+" attacked "+ship.getName()+" for "+damageDealt+"damage!");

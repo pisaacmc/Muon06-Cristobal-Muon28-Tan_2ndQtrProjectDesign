@@ -10,14 +10,11 @@ import q2classmodels.Exceptions.*;
  *
  * @author MUON
  */
-public class Merchant extends NPC{
+public class Merchant {
     private ArrayList<Item> inventory = new ArrayList();
-    public Merchant (String name, String dialogue, int gold, Ship player){
-        super(name, dialogue, gold);
-        for (int i = 0; i<=player.getInfluence();i++){
-            inventory.add(new Relic("PLACEHOLDER_RELIC",0,0,player));
-            inventory.add(new Weapon("PLACEHOLDER_WEAPON",0,0,player,1));
-        }
+    public Merchant (Ship player){
+            inventory.add(new Relic("jingo",0,0,player));
+            inventory.add(new Weapon("horse",0,0,player,1));
     }
     public void buyItem(Item item, Ship player){
         inventory.add(item);

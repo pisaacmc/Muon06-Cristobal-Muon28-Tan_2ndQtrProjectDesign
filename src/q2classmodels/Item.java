@@ -9,11 +9,11 @@ package q2classmodels;
  *
  * @author MUON
  */
-abstract class Item {
+public class Item {
     protected String name,type;
     protected int worth, price, upgradeCost, staminaCost, tier;
     protected Ship owner;
-    protected Item (String name, String type, int price, int worth, Ship owner){
+    public Item (String name, String type, int price, int worth, Ship owner){
         this.name = name;
         this.type = type;
         this.tier = 0;

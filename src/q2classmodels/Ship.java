@@ -26,6 +26,7 @@ public class Ship {
         this.hull = hull;
         this.healing = (int)Math.floor(maxHp*0.5);
         this.gold = gold;
+        this.influence = 1;
         this.stamina = 3;
         this.maxWeapon = 2;
         this.hp = maxHp;

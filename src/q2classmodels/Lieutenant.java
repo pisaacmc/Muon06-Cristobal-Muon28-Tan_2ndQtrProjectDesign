@@ -13,13 +13,13 @@ import q2classmodels.Exceptions.BrokeException;
  *
  * @author MUON
  */
-public class Lieutenant extends NPC implements Upgradable{
+public class Lieutenant extends Item implements Upgradable{
     private boolean cleanse;
     private Ship ship;
     private int[] actionStats ={0,0,0,0,0}; //damage, healing, poison, weakness strength
     private int upgradeCost,tier,staminaCost;
-    public Lieutenant(String name, String dialogue, int gold,int damage, int healing, int poison, int weakness, int strength, boolean cleanse, int staminaCost){
-        super(name, dialogue, 10);
+    public Lieutenant(String name, String dialogue, int price, int worth,int damage, int healing, int poison, int weakness, int strength, boolean cleanse, int staminaCost, Ship player){
+        super(name, "lieutenant", price, worth, player);
         actionStats[0] = damage;
         actionStats[1] = healing;
         actionStats[2] = poison;
